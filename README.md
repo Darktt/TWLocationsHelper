@@ -18,3 +18,7 @@ TWLocationsHelper
 ```Objective-C 
 [TWLocationsHelper getDistDataWithCityID:<#(NSInteger)#>]
 ```
+
+##Note
+* ARC，非ARC專案麻煩使用`-fno-objc-arc`[教學](http://stackoverflow.com/questions/6646052/how-can-i-disable-arc-for-a-single-file-in-a-project)
+* 資料至少是99年縣市合併後的版本。
