@@ -10,4 +10,21 @@
 
 @implementation TWCity
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<TWCity: City Name = %@; Identify = %d>", _cityName, _identify];
+}
+
+#pragma mark - Propery Methods
+
+- (NSString *)cityName
+{
+    return _cityName;
+}
+
+- (NSInteger)identify
+{
+    return _identify;
+}
+
 @end

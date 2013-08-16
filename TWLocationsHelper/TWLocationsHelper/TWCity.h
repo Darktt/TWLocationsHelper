@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface TWCity : NSObject
+{
+    NSString *_cityName;
+    NSUInteger _identify;
+}
 
-@property (nonatomic) NSInteger identity;
-@property (nonatomic, strong) NSString *name;
+@property (assign, readonly) NSInteger identify;
+@property (nonatomic, readonly) NSString *cityName;
 
 @end

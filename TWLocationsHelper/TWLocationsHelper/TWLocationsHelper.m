@@ -8,6 +8,40 @@
 
 #import "TWLocationsHelper.h"
 
+#pragma mark - TWCity Category
+
+@interface TWCity (Initialize)
+
++ (id)cityWithDictionary:(NSDictionary *)dictionary;
+
+@end
+
+@implementation TWCity (Initialize)
+
++ (id)cityWithDictionary:(NSDictionary *)dictionary
+{
+    TWCity *city = [[TWCity alloc] initWithDictionary:dictionary];
+    
+    return city;
+}
+
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
+    self = [super init];
+    if (self == nil) return nil;
+    
+    NSString *cityName = [dictionary[@"title"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    _cityName = cityName;
+    _identify = [dictionary[@"city_id"] integerValue];
+    
+    return self;
+}
+
+@end
+
+#pragma mark - TWLocationsHelper
+
 @interface TWLocationsHelper ()
 
 + (NSMutableDictionary *)TWLocationsInfo;
@@ -24,9 +58,7 @@
     NSMutableArray *mCities = [[NSMutableArray alloc] init];
     for (int i = 0; i < [cities count]; i++)
     {
-        TWCity *city = [[TWCity alloc] init];
-        city.name = [cities objectAtIndex:i][@"title"];
-        city.identity = [[cities objectAtIndex:i][@"city_id"] integerValue];
+        TWCity *city = [TWCity cityWithDictionary:cities[i]];
         [mCities addObject:city];
     }
     
@@ -68,3 +100,4 @@
 }
 
 @end
+
