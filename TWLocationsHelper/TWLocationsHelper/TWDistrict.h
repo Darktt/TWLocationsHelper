@@ -9,10 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface TWDistrict : NSObject
+{
+    NSUInteger _cityIdentify;
+    NSUInteger _districtIdentify;
+    NSUInteger _postNumber;
+    NSString *_districtName;
+}
 
-@property (nonatomic) NSInteger cityIdentity;
-@property (nonatomic) NSInteger identity;
-@property (nonatomic) NSInteger postNumber;
-@property (nonatomic, strong) NSString *name;
+@property (assign, readonly) NSUInteger cityIdentify;
+@property (assign, readonly) NSUInteger districtIdentify;
+@property (assign, readonly) NSUInteger postNumber;
+@property (nonatomic, readonly) NSString *districtName;
 
 @end

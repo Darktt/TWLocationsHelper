@@ -7,12 +7,24 @@
 //
 
 #import "TWCity.h"
+#import "TWRelease.h"
 
 @implementation TWCity
 
+#ifndef USE_ARC_MODE
+
+- (void)dealloc
+{
+    [_cityName release];
+    
+    [super dealloc];
+}
+
+#endif
+
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<TWCity: City Name = %@; Identify = %d>", _cityName, _identify];
+    return [NSString stringWithFormat:@"<%@: City Name = %@; Identify = %d>", NSStringFromClass([self class]), _cityName, _cityIdentify];
 }
 
 #pragma mark - Propery Methods
@@ -22,9 +34,9 @@
     return _cityName;
 }
 
-- (NSInteger)identify
+- (NSUInteger)cityIdentify
 {
-    return _identify;
+    return _cityIdentify;
 }
 
 @end

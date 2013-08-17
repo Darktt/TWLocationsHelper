@@ -11,10 +11,10 @@
 @interface TWCity : NSObject
 {
     NSString *_cityName;
-    NSUInteger _identify;
+    NSUInteger _cityIdentify;
 }
 
-@property (assign, readonly) NSInteger identify;
+@property (assign, readonly) NSUInteger cityIdentify;
 @property (nonatomic, readonly) NSString *cityName;
 
 @end

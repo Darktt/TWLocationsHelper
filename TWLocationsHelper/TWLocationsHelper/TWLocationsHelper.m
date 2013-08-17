@@ -7,8 +7,12 @@
 //
 
 #import "TWLocationsHelper.h"
+#import "TWRelease.h"
 
 #pragma mark - TWCity Category
+
+#define kTWCityNameKey  @"title"
+#define kTWCityIdKey    @"city_id"
 
 @interface TWCity (Initialize)
 
@@ -22,7 +26,7 @@
 {
     TWCity *city = [[TWCity alloc] initWithDictionary:dictionary];
     
-    return city;
+    return TWAutorelease(city);
 }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
@@ -30,10 +34,48 @@
     self = [super init];
     if (self == nil) return nil;
     
-    NSString *cityName = [dictionary[@"title"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *cityName = [dictionary[kTWCityNameKey] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    _cityName = cityName;
-    _identify = [dictionary[@"city_id"] integerValue];
+    _cityName = TWRetain(cityName);
+    _cityIdentify = [(NSString *)dictionary[kTWCityIdKey] integerValue];
+    
+    return self;
+}
+
+@end
+
+#pragma mark - TWDistrict Category
+
+#define kTWDistrictNameKey      @"title"
+#define kTWDistrictIdKey        @"district_id"
+#define kTWDistrictPostNomer    @"post_number"
+
+@interface TWDistrict (Initialize)
+
++ (id)districtWithDictionary:(NSDictionary *)dictionary;
+
+@end
+
+@implementation TWDistrict (Initialize)
+
++ (id)districtWithDictionary:(NSDictionary *)dictionary
+{
+    TWDistrict *district = [[TWDistrict alloc] initWithDictionary:dictionary];
+    
+    return TWAutorelease(district);
+}
+
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
+    self = [super init];
+    if (self == nil) return nil;
+    
+    NSString *districtName = [dictionary[kTWDistrictNameKey] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    _districtName = TWRetain(districtName);
+    _districtIdentify = [dictionary[kTWDistrictIdKey] integerValue];
+    _postNumber = [dictionary[kTWDistrictPostNomer] integerValue];
+    _cityIdentify = [dictionary[kTWCityIdKey] integerValue];
     
     return self;
 }
@@ -75,11 +117,7 @@
     NSMutableArray *mDistricts = [[NSMutableArray alloc] init];
     for (int i = 0; i < [districts count]; i++)
     {
-        TWDistrict *district = [[TWDistrict alloc] init];
-        district.name = [districts objectAtIndex:i][@"title"];
-        district.identity = [[districts objectAtIndex:i][@"district_id"] integerValue];
-        district.cityIdentity = [[districts objectAtIndex:i][@"city_id"] integerValue];
-        district.postNumber = [[districts objectAtIndex:i][@"post_number"] integerValue];
+        TWDistrict *district = [TWDistrict districtWithDictionary:districts[i]];
         [mDistricts addObject:district];
     }
     
@@ -87,9 +125,9 @@
 }
 
 #pragma mark - PV
+
 + (NSMutableDictionary *)TWLocationsInfo
 {
-    
     NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
     NSString *filePath = [NSString stringWithFormat:@"%@/TWLocationsData.bundle",bundlePath];
     NSBundle *bundle = [NSBundle bundleWithPath:filePath];

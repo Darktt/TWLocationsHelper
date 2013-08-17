@@ -25,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		55C3B2E117BEF3ED0092231D /* TWRelease.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWRelease.h; sourceTree = "<group>"; };
 		834632B617BD1E2000564EB8 /* TWLocationsHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWLocationsHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834632B917BD1E2000564EB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		834632BB17BD1E2000564EB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -129,6 +130,7 @@
 				834632E317BD205500564EB8 /* TWCity.m */,
 				834632E517BD20B400564EB8 /* TWDistrict.h */,
 				834632E617BD20B400564EB8 /* TWDistrict.m */,
+				55C3B2E117BEF3ED0092231D /* TWRelease.h */,
 			);
 			path = TWLocationsHelper;
 			sourceTree = "<group>";
