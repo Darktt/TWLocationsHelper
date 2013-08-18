@@ -293,6 +293,7 @@
 		834632DA17BD1E2000564EB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWLocationsHelper/TWLocationsHelper-Prefix.pch";
 				INFOPLIST_FILE = "TWLocationsHelper/TWLocationsHelper-Info.plist";
@@ -304,6 +305,7 @@
 		834632DB17BD1E2000564EB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWLocationsHelper/TWLocationsHelper-Prefix.pch";
 				INFOPLIST_FILE = "TWLocationsHelper/TWLocationsHelper-Info.plist";

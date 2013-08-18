@@ -84,57 +84,107 @@
 
 #pragma mark - TWLocationsHelper
 
-@interface TWLocationsHelper ()
+#define kBundleName @"TWLocationsData.bundle"
 
-+ (NSMutableDictionary *)TWLocationsInfo;
+// Dictionary Keys
+#define kCityKey        @"city"
+#define kDistrictKey    @"districts"
+
+typedef void (^NSArrayEnumerateBlock) (id ,NSUInteger, BOOL*);
+
+static TWLocationsHelper *singleton = nil;
+
+@interface TWLocationsHelper ()
+{
+    NSDictionary *_locations;
+}
+
+- (void)queryLocations;
 
 @end
 
 @implementation TWLocationsHelper
 
-+ (NSArray *)getAllCitiesData
++ (TWInstancetype)defaultLocations
 {
-    NSMutableDictionary *plistDict = [self TWLocationsInfo];
-    NSArray *cities = plistDict[@"city"];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        singleton = [TWLocationsHelper new];
+    });
     
-    NSMutableArray *mCities = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [cities count]; i++)
-    {
-        TWCity *city = [TWCity cityWithDictionary:cities[i]];
-        [mCities addObject:city];
-    }
-    
-    return mCities;
+    return singleton;
 }
 
-+ (NSArray *)getDistDataWithCityID:(NSInteger)cityIdentity
+- (id)init
 {
-    NSMutableDictionary *plistDict = [self TWLocationsInfo];
-    NSMutableArray *allDistricts = [plistDict valueForKey:@"districts"];
-    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"(city_id==%@)", [NSString stringWithFormat:@"%d", cityIdentity]];
-    NSArray *districts = [allDistricts filteredArrayUsingPredicate:predicate];
+    self = [super init];
+    if (self == nil) return nil;
     
-    NSMutableArray *mDistricts = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [districts count]; i++)
-    {
-        TWDistrict *district = [TWDistrict districtWithDictionary:districts[i]];
-        [mDistricts addObject:district];
-    }
+    [self queryLocations];
     
-    return mDistricts;
+    return self;
 }
 
-#pragma mark - PV
+#ifndef USE_ARC_MODE
 
-+ (NSMutableDictionary *)TWLocationsInfo
+- (void)dealloc
 {
+    [_locations release];
+    
+    [super dealloc];
+}
+
+#endif
+
+#pragma mark - Implementation Methods
+
+- (void)queryLocations
+{
+    if (_locations != nil) {
+        return;
+    }
+    
     NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-    NSString *filePath = [NSString stringWithFormat:@"%@/TWLocationsData.bundle",bundlePath];
+    NSString *filePath = [bundlePath stringByAppendingPathComponent:kBundleName];
     NSBundle *bundle = [NSBundle bundleWithPath:filePath];
     NSString *plistPath = [bundle pathForResource:@"TWLocationsData" ofType:@"plist"];
-    NSMutableDictionary *plistDict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
     
-    return plistDict;
+    _locations = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+}
+
+- (NSArray *)allCities
+{
+    NSMutableArray *_allCities = [NSMutableArray arrayWithCapacity:0];
+    
+    NSArrayEnumerateBlock enumBlock = ^(NSDictionary *cityDictionary, NSUInteger index, BOOL *stop){
+        TWCity *city = [TWCity cityWithDictionary:cityDictionary];
+        [_allCities addObject:city];
+    };
+    
+    NSArray *cities = _locations[kCityKey];
+    [cities enumerateObjectsUsingBlock:enumBlock];
+    
+    return _allCities;
+}
+
+- (NSArray *)districtFromCityID:(NSUInteger)cityIdentity
+{
+    NSMutableArray *_districts = [NSMutableArray arrayWithCapacity:0];
+    
+    NSArrayEnumerateBlock enumBlock = ^(NSDictionary *districDictionary, NSUInteger index, BOOL *stop){
+        TWDistrict *district = [TWDistrict districtWithDictionary:districDictionary];
+        [_districts addObject:district];
+    };
+    
+    NSArray *allDistricts = _locations[kDistrictKey];
+    NSString *cityIDString = [NSString stringWithFormat:@"%d", cityIdentity];
+    
+    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"(city_id==%@)", cityIDString];
+    
+    NSArray *filteredDistricts = [allDistricts filteredArrayUsingPredicate:predicate];
+    [filteredDistricts enumerateObjectsUsingBlock:enumBlock];
+    
+    return _districts;
 }
 
 @end

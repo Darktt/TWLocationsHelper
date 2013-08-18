@@ -19,7 +19,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    NSLog(@"%@,%@",[TWLocationsHelper getAllCitiesData],[TWLocationsHelper getDistDataWithCityID:2]);
+    
+    // Call singleton
+    NSArray *cities = [[TWLocationsHelper defaultLocations] allCities];
+    NSLog(@"All Cities : %@", cities);
+    
+    // Use Variable
+    TWLocationsHelper *locations = [TWLocationsHelper defaultLocations];
+    TWCity *city = cities[0];
+    NSArray *districts = [locations districtFromCityID:city.cityIdentify];
+    
+    NSLog(@"Districts = %@", districts);
 }
 
 - (void)didReceiveMemoryWarning

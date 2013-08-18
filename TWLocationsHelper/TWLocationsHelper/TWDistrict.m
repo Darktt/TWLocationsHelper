@@ -24,7 +24,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: Name = %@; City Identify = %d; Identify = %d>", NSStringFromClass([self class]), _districtName, _cityIdentify,  _districtIdentify];;
+    return [NSString stringWithFormat:@"<%@:  City Identify = %d; District Name = %@; District Identify = %d Post Numer = %d >", NSStringFromClass([self class]), _cityIdentify, _districtName,  _districtIdentify, _postNumber];;
 }
 
 #pragma mark - Propery Methods

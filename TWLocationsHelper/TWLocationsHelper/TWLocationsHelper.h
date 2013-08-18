@@ -10,9 +10,17 @@
 #import "TWCity.h"
 #import "TWDistrict.h"
 
+#if __has_feature(objc_instancetype)
+#define TWInstancetype instancetype
+#else
+#define TWInstancetype id
+#endif
+
 @interface TWLocationsHelper : NSObject
 
-+ (NSArray *)getAllCitiesData;
-+ (NSArray *)getDistDataWithCityID:(NSInteger)cityIdentity;
++ (TWInstancetype)defaultLocations;
+
+- (NSArray *)allCities;
+- (NSArray *)districtFromCityID:(NSUInteger)cityIdentity;
 
 @end
