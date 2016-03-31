@@ -10,17 +10,13 @@
 #import "TWCity.h"
 #import "TWDistrict.h"
 
-#if __has_feature(objc_instancetype)
-#define TWInstancetype instancetype
-#else
-#define TWInstancetype id
-#endif
-
+NS_ASSUME_NONNULL_BEGIN
 @interface TWLocationsHelper : NSObject
 
-+ (TWInstancetype)defaultLocations;
++ (instancetype)defaultLocations;
 
 - (NSArray *)allCities;
 - (NSArray *)districtFromCityID:(NSUInteger)cityIdentity;
 
 @end
+NS_ASSUME_NONNULL_END

@@ -22,12 +22,12 @@
     
     // Call singleton
     NSArray *cities = [[TWLocationsHelper defaultLocations] allCities];
-    NSLog(@"All Cities : %@", cities);
+    NSLog(@"All Cities : %@", [cities description]);
     
     // Use Variable
     TWLocationsHelper *locations = [TWLocationsHelper defaultLocations];
     TWCity *city = cities[0];
-    NSArray *districts = [locations districtFromCityID:city.cityIdentify];
+    NSArray *districts = [locations districtFromCityID:city.cityIdentifier];
     
     NSLog(@"Districts = %@", districts);
 }

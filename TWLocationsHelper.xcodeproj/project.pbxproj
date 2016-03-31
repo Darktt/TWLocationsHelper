@@ -19,13 +19,12 @@
 		834632D317BD1E2000564EB8 /* TWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632D217BD1E2000564EB8 /* TWViewController.m */; };
 		834632D617BD1E2000564EB8 /* TWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834632D417BD1E2000564EB8 /* TWViewController.xib */; };
 		834632DE17BD1E6A00564EB8 /* TWLocationsData.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 834632DD17BD1E6A00564EB8 /* TWLocationsData.bundle */; };
-		834632E117BD1E8600564EB8 /* TWLocationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E017BD1E8600564EB8 /* TWLocationsHelper.m */; };
-		834632E417BD205500564EB8 /* TWCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E317BD205500564EB8 /* TWCity.m */; };
-		834632E717BD20B400564EB8 /* TWDistrict.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E617BD20B400564EB8 /* TWDistrict.m */; };
+		834632E117BD1E8600564EB8 /* TWLocationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E017BD1E8600564EB8 /* TWLocationsHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		834632E417BD205500564EB8 /* TWCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E317BD205500564EB8 /* TWCity.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		834632E717BD20B400564EB8 /* TWDistrict.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E617BD20B400564EB8 /* TWDistrict.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		55C3B2E117BEF3ED0092231D /* TWRelease.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWRelease.h; sourceTree = "<group>"; };
 		834632B617BD1E2000564EB8 /* TWLocationsHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWLocationsHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834632B917BD1E2000564EB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		834632BB17BD1E2000564EB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,7 +129,6 @@
 				834632E317BD205500564EB8 /* TWCity.m */,
 				834632E517BD20B400564EB8 /* TWDistrict.h */,
 				834632E617BD20B400564EB8 /* TWDistrict.m */,
-				55C3B2E117BEF3ED0092231D /* TWRelease.h */,
 			);
 			path = TWLocationsHelper;
 			sourceTree = "<group>";

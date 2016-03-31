@@ -8,13 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface TWCity : NSObject
-{
-    NSString *_cityName;
-    NSUInteger _cityIdentify;
-}
 
-@property (assign, readonly) NSUInteger cityIdentify;
-@property (nonatomic, readonly) NSString *cityName;
+@property (readonly) NSUInteger cityIdentifier;
+@property (readonly) NSString *cityName;
 
 @end
+NS_ASSUME_NONNULL_END

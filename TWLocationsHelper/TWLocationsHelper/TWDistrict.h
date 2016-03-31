@@ -8,17 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface TWDistrict : NSObject
-{
-    NSUInteger _cityIdentify;
-    NSUInteger _districtIdentify;
-    NSUInteger _postNumber;
-    NSString *_districtName;
-}
 
-@property (assign, readonly) NSUInteger cityIdentify;
-@property (assign, readonly) NSUInteger districtIdentify;
-@property (assign, readonly) NSUInteger postNumber;
-@property (nonatomic, readonly) NSString *districtName;
+@property (readonly) NSUInteger cityIdentifier;
+@property (readonly) NSUInteger districtIdentifier;
+@property (readonly) NSUInteger postNumber;
+@property (readonly) NSString *districtName;
 
 @end
+NS_ASSUME_NONNULL_END

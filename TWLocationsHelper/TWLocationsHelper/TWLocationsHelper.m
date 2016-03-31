@@ -7,88 +7,30 @@
 //
 
 #import "TWLocationsHelper.h"
-#import "TWRelease.h"
 
 #pragma mark - TWCity Category
 
-#define kTWCityNameKey  @"title"
-#define kTWCityIdKey    @"city_id"
-
 @interface TWCity (Initialize)
 
-+ (id)cityWithDictionary:(NSDictionary *)dictionary;
-
-@end
-
-@implementation TWCity (Initialize)
-
-+ (id)cityWithDictionary:(NSDictionary *)dictionary
-{
-    TWCity *city = [[TWCity alloc] initWithDictionary:dictionary];
-    
-    return TWAutorelease(city);
-}
-
-- (id)initWithDictionary:(NSDictionary *)dictionary
-{
-    self = [super init];
-    if (self == nil) return nil;
-    
-    NSString *cityName = [dictionary[kTWCityNameKey] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    _cityName = TWRetain(cityName);
-    _cityIdentify = [(NSString *)dictionary[kTWCityIdKey] integerValue];
-    
-    return self;
-}
++ (instancetype)cityWithDictionary:(NSDictionary *)dictionary;
 
 @end
 
 #pragma mark - TWDistrict Category
 
-#define kTWDistrictNameKey      @"title"
-#define kTWDistrictIdKey        @"district_id"
-#define kTWDistrictPostNomer    @"post_number"
-
 @interface TWDistrict (Initialize)
 
-+ (id)districtWithDictionary:(NSDictionary *)dictionary;
-
-@end
-
-@implementation TWDistrict (Initialize)
-
-+ (id)districtWithDictionary:(NSDictionary *)dictionary
-{
-    TWDistrict *district = [[TWDistrict alloc] initWithDictionary:dictionary];
-    
-    return TWAutorelease(district);
-}
-
-- (id)initWithDictionary:(NSDictionary *)dictionary
-{
-    self = [super init];
-    if (self == nil) return nil;
-    
-    NSString *districtName = [dictionary[kTWDistrictNameKey] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    _districtName = TWRetain(districtName);
-    _districtIdentify = [dictionary[kTWDistrictIdKey] integerValue];
-    _postNumber = [dictionary[kTWDistrictPostNomer] integerValue];
-    _cityIdentify = [dictionary[kTWCityIdKey] integerValue];
-    
-    return self;
-}
++ (instancetype)districtWithDictionary:(NSDictionary *)dictionary;
 
 @end
 
 #pragma mark - TWLocationsHelper
 
-#define kBundleName @"TWLocationsData.bundle"
+NSString *const kBundleName = @"TWLocationsData.bundle";
 
 // Dictionary Keys
-#define kCityKey        @"city"
-#define kDistrictKey    @"districts"
+NSString *const kCityKey = @"city";
+NSString *const kDistrictKey = @"districts";
 
 typedef void (^NSArrayEnumerateBlock) (id ,NSUInteger, BOOL*);
 
@@ -105,7 +47,7 @@ static TWLocationsHelper *singleton = nil;
 
 @implementation TWLocationsHelper
 
-+ (TWInstancetype)defaultLocations
++ (instancetype)defaultLocations
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -115,7 +57,7 @@ static TWLocationsHelper *singleton = nil;
     return singleton;
 }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self == nil) return nil;
@@ -125,16 +67,12 @@ static TWLocationsHelper *singleton = nil;
     return self;
 }
 
-#ifndef USE_ARC_MODE
-
 - (void)dealloc
 {
     [_locations release];
     
     [super dealloc];
 }
-
-#endif
 
 #pragma mark - Implementation Methods
 
@@ -154,37 +92,33 @@ static TWLocationsHelper *singleton = nil;
 
 - (NSArray *)allCities
 {
-    NSMutableArray *_allCities = [NSMutableArray arrayWithCapacity:0];
-    
-    NSArrayEnumerateBlock enumBlock = ^(NSDictionary *cityDictionary, NSUInteger index, BOOL *stop){
-        TWCity *city = [TWCity cityWithDictionary:cityDictionary];
-        [_allCities addObject:city];
-    };
-    
     NSArray *cities = _locations[kCityKey];
-    [cities enumerateObjectsUsingBlock:enumBlock];
+    NSMutableArray *allCities = [NSMutableArray arrayWithCapacity:0];
     
-    return _allCities;
+    for (NSDictionary *dictionary in cities) {
+        TWCity *city = [TWCity cityWithDictionary:dictionary];
+        [allCities addObject:city];
+    }
+    
+    return allCities;
 }
 
 - (NSArray *)districtFromCityID:(NSUInteger)cityIdentity
 {
-    NSMutableArray *_districts = [NSMutableArray arrayWithCapacity:0];
-    
-    NSArrayEnumerateBlock enumBlock = ^(NSDictionary *districDictionary, NSUInteger index, BOOL *stop){
-        TWDistrict *district = [TWDistrict districtWithDictionary:districDictionary];
-        [_districts addObject:district];
-    };
-    
     NSArray *allDistricts = _locations[kDistrictKey];
     NSString *cityIDString = [NSString stringWithFormat:@"%d", cityIdentity];
     
-    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"(city_id==%@)", cityIDString];
+    NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"self.city_id == %@", cityIDString];
     
     NSArray *filteredDistricts = [allDistricts filteredArrayUsingPredicate:predicate];
-    [filteredDistricts enumerateObjectsUsingBlock:enumBlock];
+    NSMutableArray *districts = [NSMutableArray arrayWithCapacity:0];
     
-    return _districts;
+    for (NSDictionary *dictionary in filteredDistricts) {
+        TWDistrict *district = [TWDistrict districtWithDictionary:dictionary];
+        [districts addObject:district];
+    }
+    
+    return districts;
 }
 
 @end
