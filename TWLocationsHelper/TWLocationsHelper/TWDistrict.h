@@ -11,9 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TWDistrict : NSObject
 
 @property (readonly) NSUInteger cityIdentifier;
-@property (readonly) NSUInteger districtIdentifier;
+@property (readonly) NSUInteger identifier;
 @property (readonly) NSUInteger postNumber;
-@property (readonly) NSString *districtName;
+@property (readonly) NSString *name;
 
 @end
 NS_ASSUME_NONNULL_END

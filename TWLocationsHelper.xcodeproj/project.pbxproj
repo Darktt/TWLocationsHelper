@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521E6F3A1CBE34F200C03F81 /* TWLocationsPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521E6F391CBE34F200C03F81 /* TWLocationsPickerController.m */; };
 		834632BA17BD1E2000564EB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834632B917BD1E2000564EB8 /* UIKit.framework */; };
 		834632BC17BD1E2000564EB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834632BB17BD1E2000564EB8 /* Foundation.framework */; };
 		834632BE17BD1E2000564EB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834632BD17BD1E2000564EB8 /* CoreGraphics.framework */; };
@@ -19,12 +20,14 @@
 		834632D317BD1E2000564EB8 /* TWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632D217BD1E2000564EB8 /* TWViewController.m */; };
 		834632D617BD1E2000564EB8 /* TWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834632D417BD1E2000564EB8 /* TWViewController.xib */; };
 		834632DE17BD1E6A00564EB8 /* TWLocationsData.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 834632DD17BD1E6A00564EB8 /* TWLocationsData.bundle */; };
-		834632E117BD1E8600564EB8 /* TWLocationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E017BD1E8600564EB8 /* TWLocationsHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		834632E417BD205500564EB8 /* TWCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E317BD205500564EB8 /* TWCity.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		834632E717BD20B400564EB8 /* TWDistrict.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E617BD20B400564EB8 /* TWDistrict.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		834632E117BD1E8600564EB8 /* TWLocationsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E017BD1E8600564EB8 /* TWLocationsHelper.m */; };
+		834632E417BD205500564EB8 /* TWCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E317BD205500564EB8 /* TWCity.m */; };
+		834632E717BD20B400564EB8 /* TWDistrict.m in Sources */ = {isa = PBXBuildFile; fileRef = 834632E617BD20B400564EB8 /* TWDistrict.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		521E6F381CBE34F200C03F81 /* TWLocationsPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWLocationsPickerController.h; sourceTree = "<group>"; };
+		521E6F391CBE34F200C03F81 /* TWLocationsPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWLocationsPickerController.m; sourceTree = "<group>"; };
 		834632B617BD1E2000564EB8 /* TWLocationsHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWLocationsHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834632B917BD1E2000564EB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		834632BB17BD1E2000564EB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -129,6 +132,8 @@
 				834632E317BD205500564EB8 /* TWCity.m */,
 				834632E517BD20B400564EB8 /* TWDistrict.h */,
 				834632E617BD20B400564EB8 /* TWDistrict.m */,
+				521E6F381CBE34F200C03F81 /* TWLocationsPickerController.h */,
+				521E6F391CBE34F200C03F81 /* TWLocationsPickerController.m */,
 			);
 			path = TWLocationsHelper;
 			sourceTree = "<group>";
@@ -160,7 +165,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TW;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = ChrisXu;
 			};
 			buildConfigurationList = 834632B117BD1E2000564EB8 /* Build configuration list for PBXProject "TWLocationsHelper" */;
@@ -202,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				834632C617BD1E2000564EB8 /* main.m in Sources */,
+				521E6F3A1CBE34F200C03F81 /* TWLocationsPickerController.m in Sources */,
 				834632CA17BD1E2000564EB8 /* TWAppDelegate.m in Sources */,
 				834632D317BD1E2000564EB8 /* TWViewController.m in Sources */,
 				834632E117BD1E8600564EB8 /* TWLocationsHelper.m in Sources */,
@@ -246,6 +252,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -291,10 +298,12 @@
 		834632DA17BD1E2000564EB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWLocationsHelper/TWLocationsHelper-Prefix.pch";
 				INFOPLIST_FILE = "TWLocationsHelper/TWLocationsHelper-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "ChrisXtudio.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -303,10 +312,12 @@
 		834632DB17BD1E2000564EB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWLocationsHelper/TWLocationsHelper-Prefix.pch";
 				INFOPLIST_FILE = "TWLocationsHelper/TWLocationsHelper-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "ChrisXtudio.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

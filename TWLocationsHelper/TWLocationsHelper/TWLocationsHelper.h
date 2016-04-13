@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)defaultLocations;
 
-- (NSArray *)allCities;
-- (NSArray *)districtFromCityID:(NSUInteger)cityIdentity;
+- (NSArray<TWCity *> *)allCities;
+- (NSArray<TWDistrict *> *)districtsFromCityID:(NSUInteger)cityIdentity;
 
 @end
 NS_ASSUME_NONNULL_END

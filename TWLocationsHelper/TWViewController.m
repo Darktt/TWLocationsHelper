@@ -20,14 +20,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    TWLocationsHelper *locations = [TWLocationsHelper defaultLocations];
+    
     // Call singleton
-    NSArray *cities = [[TWLocationsHelper defaultLocations] allCities];
+    NSArray *cities = [locations allCities];
     NSLog(@"All Cities : %@", [cities description]);
     
     // Use Variable
-    TWLocationsHelper *locations = [TWLocationsHelper defaultLocations];
     TWCity *city = cities[0];
-    NSArray *districts = [locations districtFromCityID:city.cityIdentifier];
+    NSArray *districts = [locations districtsFromCityID:city.identifier];
     
     NSLog(@"Districts = %@", districts);
 }

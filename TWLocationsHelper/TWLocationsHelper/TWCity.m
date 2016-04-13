@@ -12,8 +12,8 @@ NSString *const kTWCityIdKey = @"city_id";
 
 @interface TWCity ()
 
-@property (assign, nonatomic) NSUInteger cityIdentifier;
-@property (copy, nonatomic) NSString *cityName;
+@property (assign, nonatomic) NSUInteger identifier;
+@property (copy, nonatomic) NSString *name;
 
 @end
 
@@ -34,22 +34,22 @@ NSString *const kTWCityIdKey = @"city_id";
     NSString *cityName = dictionary[kTWCityNameKey];
     NSString *identifier = dictionary[kTWCityIdKey];
     
-    [self setCityName:cityName];
-    [self setCityIdentifier:identifier.integerValue];
+    [self setName:cityName];
+    [self setIdentifier:identifier.integerValue];
     
     return self;
 }
 
 - (void)dealloc
 {
-    [_cityName release];
+    [self setName:nil];
     
     [super dealloc];
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: City Name = %@; Identify = %d>", NSStringFromClass([self class]), self.cityName, self.cityIdentifier];
+    return [NSString stringWithFormat:@"<%@: City Name = %@; Identify = %zd>", NSStringFromClass([self class]), self.name, self.identifier];
 }
 
 @end

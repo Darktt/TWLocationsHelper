@@ -38,6 +38,8 @@ static TWLocationsHelper *singleton = nil;
 @interface TWLocationsHelper ()
 {
     NSDictionary *_locations;
+    
+    NSArray<TWCity *> *_cities;
 }
 
 - (void)queryLocations;
@@ -91,6 +93,10 @@ static TWLocationsHelper *singleton = nil;
 
 - (NSArray *)allCities
 {
+    if (_cities != nil) {
+        return _cities;
+    }
+    
     NSArray *cities = _locations[kCityKey];
     NSMutableArray *allCities = [NSMutableArray arrayWithCapacity:0];
     
@@ -99,13 +105,15 @@ static TWLocationsHelper *singleton = nil;
         [allCities addObject:city];
     }
     
-    return allCities;
+    _cities = [[NSArray alloc] initWithArray:allCities];
+    
+    return _cities;
 }
 
-- (NSArray *)districtFromCityID:(NSUInteger)cityIdentity
+- (NSArray *)districtsFromCityID:(NSUInteger)cityIdentity
 {
     NSArray *allDistricts = _locations[kDistrictKey];
-    NSString *cityIDString = [NSString stringWithFormat:@"%d", cityIdentity];
+    NSString *cityIDString = [NSString stringWithFormat:@"%zd", cityIdentity];
     
     NSPredicate *predicate  = [NSPredicate predicateWithFormat:@"self.city_id == %@", cityIDString];
     
@@ -121,4 +129,3 @@ static TWLocationsHelper *singleton = nil;
 }
 
 @end
-

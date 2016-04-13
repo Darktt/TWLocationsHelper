@@ -15,9 +15,9 @@ NSString *const kTWDistrictPostNumber = @"post_number";
 @interface TWDistrict ()
 
 @property (assign, nonatomic) NSUInteger cityIdentifier;
-@property (assign, nonatomic) NSUInteger districtIdentifier;
+@property (assign, nonatomic) NSUInteger identifier;
 @property (assign, nonatomic) NSUInteger postNumber;
-@property (copy, nonatomic) NSString *districtName;
+@property (copy, nonatomic) NSString *name;
 
 @end
 
@@ -40,8 +40,8 @@ NSString *const kTWDistrictPostNumber = @"post_number";
     NSString *postNumber = dictionary[kTWDistrictPostNumber];
     NSString *cityIdentifier = dictionary[kTWDistrictCityIdentifierKey];
     
-    [self setDistrictName:districtName];
-    [self setDistrictIdentifier:districtIdentifier.integerValue];
+    [self setName:districtName];
+    [self setIdentifier:districtIdentifier.integerValue];
     [self setPostNumber:postNumber.integerValue];
     [self setCityIdentifier:cityIdentifier.integerValue];
     
@@ -50,14 +50,14 @@ NSString *const kTWDistrictPostNumber = @"post_number";
 
 - (void)dealloc
 {
-    [self setDistrictName:nil];
+    [self setName:nil];
     
     [super dealloc];
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@:  City Identify = %d; District Name = %@; District Identify = %d Post Numer = %d >", NSStringFromClass([self class]), self.cityIdentifier, self.districtName,  self.districtIdentifier, self.postNumber];
+    return [NSString stringWithFormat:@"<%@:  City Identify = %zd; District Name = %@; District Identify = %zd Post Numer = %zd >", NSStringFromClass([self class]), self.cityIdentifier, self.name,  self.identifier, self.postNumber];
 }
 
 @end

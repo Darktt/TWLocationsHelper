@@ -10,8 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface TWCity : NSObject
 
-@property (readonly) NSUInteger cityIdentifier;
-@property (readonly) NSString *cityName;
+@property (readonly) NSUInteger identifier;
+@property (readonly) NSString *name;
 
 @end
 NS_ASSUME_NONNULL_END
