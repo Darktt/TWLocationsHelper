@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		521E6F3A1CBE34F200C03F81 /* TWLocationsPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521E6F391CBE34F200C03F81 /* TWLocationsPickerController.m */; };
+		5276A9941CC4D557008536B1 /* TWLocationPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5276A9931CC4D557008536B1 /* TWLocationPickerView.m */; };
 		834632BA17BD1E2000564EB8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834632B917BD1E2000564EB8 /* UIKit.framework */; };
 		834632BC17BD1E2000564EB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834632BB17BD1E2000564EB8 /* Foundation.framework */; };
 		834632BE17BD1E2000564EB8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834632BD17BD1E2000564EB8 /* CoreGraphics.framework */; };
@@ -28,6 +29,8 @@
 /* Begin PBXFileReference section */
 		521E6F381CBE34F200C03F81 /* TWLocationsPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWLocationsPickerController.h; sourceTree = "<group>"; };
 		521E6F391CBE34F200C03F81 /* TWLocationsPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWLocationsPickerController.m; sourceTree = "<group>"; };
+		5276A9921CC4D557008536B1 /* TWLocationPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWLocationPickerView.h; sourceTree = "<group>"; };
+		5276A9931CC4D557008536B1 /* TWLocationPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWLocationPickerView.m; sourceTree = "<group>"; };
 		834632B617BD1E2000564EB8 /* TWLocationsHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWLocationsHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834632B917BD1E2000564EB8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		834632BB17BD1E2000564EB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -134,6 +137,8 @@
 				834632E617BD20B400564EB8 /* TWDistrict.m */,
 				521E6F381CBE34F200C03F81 /* TWLocationsPickerController.h */,
 				521E6F391CBE34F200C03F81 /* TWLocationsPickerController.m */,
+				5276A9921CC4D557008536B1 /* TWLocationPickerView.h */,
+				5276A9931CC4D557008536B1 /* TWLocationPickerView.m */,
 			);
 			path = TWLocationsHelper;
 			sourceTree = "<group>";
@@ -166,7 +171,7 @@
 			attributes = {
 				CLASSPREFIX = TW;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = ChrisXu;
+				ORGANIZATIONNAME = Darktt;
 			};
 			buildConfigurationList = 834632B117BD1E2000564EB8 /* Build configuration list for PBXProject "TWLocationsHelper" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -211,6 +216,7 @@
 				834632CA17BD1E2000564EB8 /* TWAppDelegate.m in Sources */,
 				834632D317BD1E2000564EB8 /* TWViewController.m in Sources */,
 				834632E117BD1E8600564EB8 /* TWLocationsHelper.m in Sources */,
+				5276A9941CC4D557008536B1 /* TWLocationPickerView.m in Sources */,
 				834632E417BD205500564EB8 /* TWCity.m in Sources */,
 				834632E717BD20B400564EB8 /* TWDistrict.m in Sources */,
 			);

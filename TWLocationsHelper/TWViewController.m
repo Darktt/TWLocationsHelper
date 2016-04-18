@@ -7,9 +7,9 @@
 //
 
 #import "TWViewController.h"
-#import "TWLocationsHelper.h"
+#import "TWLocationPickerView.h"
 
-@interface TWViewController ()
+@interface TWViewController () <TWLocationPickerViewDelegate>
 
 @end
 
@@ -20,23 +20,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    TWLocationsHelper *locations = [TWLocationsHelper defaultLocations];
+    CGRect frame = CGRectMake(0.0f, 0.0f, 320.0f, 216.0f);
+    TWLocationPickerView *pickView = [[TWLocationPickerView alloc] initWithFrame:frame];
+    [pickView setDelegate:self];
     
-    // Call singleton
-    NSArray *cities = [locations allCities];
-    NSLog(@"All Cities : %@", [cities description]);
-    
-    // Use Variable
-    TWCity *city = cities[0];
-    NSArray *districts = [locations districtsFromCityID:city.identifier];
-    
-    NSLog(@"Districts = %@", districts);
+    [self.view addSubview:pickView];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)picker:(TWLocationPickerView *)picker didPickedCity:(TWCity *)city
+{
+    NSLog(@"You picked: %@", city.name);
+}
+
+- (void)picker:(TWLocationPickerView *)picker didPickedDistrict:(TWDistrict *)district
+{
+    NSLog(@"You district: %@", district.name);
 }
 
 @end

@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger, TWLocationsPickerSource) {
 @property (assign) NSUInteger districtID;
 
 + (instancetype)locationPickerWithDelegate:(id<TWLocationsPickerControllerDelegate>)delegate;
+- (instancetype)initWithDelegate:(id<TWLocationsPickerControllerDelegate>)delegate;
 
 @end
 

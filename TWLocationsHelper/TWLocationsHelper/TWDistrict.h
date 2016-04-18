@@ -16,4 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSString *name;
 
 @end
+
+@interface NSArray (TWDistrict)
+
+- (NSInteger)indexOfDistreictID:(NSUInteger)distreictID;
+
+@end
 NS_ASSUME_NONNULL_END

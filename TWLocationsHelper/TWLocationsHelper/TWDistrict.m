@@ -57,7 +57,24 @@ NSString *const kTWDistrictPostNumber = @"post_number";
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@:  City Identify = %zd; District Name = %@; District Identify = %zd Post Numer = %zd >", NSStringFromClass([self class]), self.cityIdentifier, self.name,  self.identifier, self.postNumber];
+    return [NSString stringWithFormat:@"<%@:  City Identify = %zd; District Name = %@; District Identifier = %zd Post Numer = %zd >", NSStringFromClass([self class]), self.cityIdentifier, self.name,  self.identifier, self.postNumber];
+}
+
+@end
+
+@implementation NSArray (TWDistrict)
+
+- (NSInteger)indexOfDistreictID:(NSUInteger)distreictID
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.identifier == %@", @(distreictID)];
+    
+    NSArray<TWDistrict *> *filiteredDistrict = [self filteredArrayUsingPredicate:predicate];
+    
+    if (filiteredDistrict.count == 0) {
+        return NSNotFound;
+    }
+    
+    return [self indexOfObject:filiteredDistrict.firstObject];
 }
 
 @end

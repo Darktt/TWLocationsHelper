@@ -36,6 +36,8 @@
     self = [super init];
     if (self == nil) return nil;
     
+    [self setCityID:NSIntegerMax];
+    [self setDistrictID:NSIntegerMax];
     [self setDelegate:delegate];
     
     return self;
@@ -64,13 +66,17 @@
     [super viewDidDisappear:animated];
     
     if ([self.delegate respondsToSelector:@selector(locationsPicker:didPickCity:)] && self.pickerSource == TWLocationsPickerSourceCities) {
+        
         TWCity *city = _cities[_selectedIndexPath.row];
         
         [self.delegate locationsPicker:self didPickCity:city];
     }
     
     if ([self.delegate respondsToSelector:@selector(locationsPicker:didPickDistrict:)] && self.pickerSource == TWLocationsPickerSourceDistricts) {
-        TWDistrict *district = _district[_selectedIndexPath.row];
+        
+        NSInteger row = _selectedIndexPath.row;
+        
+        TWDistrict *district = _district[row];
         
         [self.delegate locationsPicker:self didPickDistrict:district];
     }
@@ -96,14 +102,22 @@
         NSArray *cities = [locationsHelper allCities];
         
         _cities = [[NSArray alloc] initWithArray:cities];
-        _selectedIndexPath = [[NSIndexPath indexPathForRow:self.cityID inSection:0] retain];
+        NSInteger row = self.cityID -1;
+        
+        _selectedIndexPath = [[NSIndexPath indexPathForRow:row inSection:0] retain];
     }
     
     if (self.pickerSource == TWLocationsPickerSourceDistricts) {
         NSArray *districts = [locationsHelper districtsFromCityID:self.cityID];
         
         _district = [[NSArray alloc] initWithArray:districts];
-        _selectedIndexPath = [[NSIndexPath indexPathForRow:self.districtID inSection:0] retain];
+        NSInteger row = [_district indexOfDistreictID:self.districtID];
+        
+        if (row == NSNotFound) {
+            row = 0;
+        }
+        
+        _selectedIndexPath = [[NSIndexPath indexPathForRow:row inSection:0] retain];
     }
 }
 
